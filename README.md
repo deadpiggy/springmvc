@@ -27,4 +27,18 @@ intellJ IDEA + git + github
 
    修改本地项目中的文件(Commit File... - Commit and Push)
    
-10、右击需要上传(更新)的文件名 - Git - Commit File - Commit and Push 
+10、右击需要上传(更新)的文件名 - Git - Commit File - Commit and Push
+
+
+
+
+团队开发
+
+1、GitHub 上新建组织
+
+2、邀请成员
+
+3、设置权限
+
+4、VCS - Checkout from Version Control - GitHub
+   Click Clone [可更改项目名]
