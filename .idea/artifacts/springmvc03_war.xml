@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="springmvc03:war">
+    <output-path>$PROJECT_DIR$/springmvc03/target</output-path>
+    <root id="archive" name="ssm.war">
+      <element id="artifact" artifact-name="springmvc03:war exploded" />
+    </root>
+  </artifact>
+</component>

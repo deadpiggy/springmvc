@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hyh.springmvc.dao.ToyMapper">
+
+    <!--开始分页**************************************************-->
+    <resultMap id="toy-result" type="cn.hyh.springmvc.pojo.Toy">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="price" column="price"/>
+        <result property="createDate" column="createdate"/>
+    </resultMap>
+
+    <!--条件语句-->
+    <sql id="whereCase">
+        <where>
+            1=1
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+            <if test="beginDate != null and endDate != null">
+                BETWEEN date_format(#{beginDate}, '%Y-%m-%d') AND date_format(#{endDate}, '%Y-%m-%d')
+            </if>
+        </where>
+    </sql>
+
+    <!--排序语句-->
+    <sql id="orderBy">
+        ORDER BY
+        <choose>
+            <when test="sort=='name'">name</when>
+            <when test="sort=='price'">price</when>
+            <when test="sort=='createDate'">create_date</when>
+            <otherwise>id</otherwise>
+        </choose>
+    </sql>
+
+    <!--开始查询-->
+    <select id="findPager" resultMap="toy-result">
+        SELECT * FROM toy
+        INNER JOIN (
+        SELECT id FROM toy
+        <include refid="whereCase"/>
+        <include refid="orderBy"/>
+        limit #{page},#{rows}
+        ) AS lim USING (id);
+    </select>
+    
+    <!--总记录数-->
+    <select id="getTotal" resultType="int">
+        select COUNT(id) from toy
+        <include refid="whereCase"/>
+    </select>
+
+    <!--条件查询-->
+    <select id="findByParam" resultMap="toy-result">
+        SELECT id,name,price,create_date from toy
+        <include refid="whereCase"/>
+    </select>
+    <!--结束分页**************************************************-->
+
+    <!--条件查询-->
+    <select id="findParam" resultMap="toy-result">
+        select id, name, price, create_date from toy
+        <include refid="whereCase"/>
+    </select>
+
+</mapper>
