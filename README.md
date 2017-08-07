@@ -23,7 +23,7 @@ intellJ IDEA + git + github
 8、右击工程名 - Git - Repostory - Pull
     此步骤完成 GitHub 到本地 (README.md下载到本地)
     
-9、新增本地项目中的文件
-   修改本地项目中的文件
+9、新增本地项目中的文件(Add - Commit File... - Commit and Push)
+   修改本地项目中的文件(Commit File... - Commit and Push)
    
 10、右击需要上传(更新)的文件名 - Git - Commit File - Commit and Push 
